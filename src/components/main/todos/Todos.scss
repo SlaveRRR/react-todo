@@ -1,0 +1,19 @@
+.todo-section {
+    margin-bottom: 2em;
+}
+
+.todo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    gap: .5em;
+
+}
+
+
+
+.todo-container__header {
+    margin-bottom: .1em;
+}
