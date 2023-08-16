@@ -2,21 +2,21 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import TodoItem from "./todoItem/todoItem";
 import "./Todos.scss"
 import { useSelector } from "react-redux";
+import { useActions } from "../../../hooks/useActions";
 const Todos = () => {
-    // const changeOrder = (ownId, dropId) => {
-    //     setTodos(prev => {
-    //         let filtered = prev.filter(elem => elem != prev[ownId])
-    //         return [...filtered.slice(0,dropId),prev[ownId],...filtered.slice(dropId)]
-    //     })
+  
+    const {todos,isLoading,error} = useSelector(state => state.todos);
 
-    // }
-    const {todos} = useSelector(state => state);
-
+    const {getTodos} = useActions();
+    
+ 
+    
     const elemHeading = useRef();
     const maxValue = useRef();
   
    
     useEffect(() =>{
+        console.log(getTodos(5))
         maxValue.current = elemHeading.current.nextElementSibling.getBoundingClientRect().top - 10
         console.log(maxValue)
     },[])
@@ -28,7 +28,7 @@ const Todos = () => {
                 <h2 ref={elemHeading} className="todo-container__header">Задачи</h2>
                 
                 {
-                todos.length > 0 ? todos.map((e, i) => <TodoItem maxValue={maxValue}   key={i + 1} id={i} text={e} />) : <p>Добавьте задачи</p>
+                isLoading ? <h1>Загрузка...</h1> :  todos.length > 0 ? todos.map(({title},i) => <TodoItem maxValue={maxValue}   key={i+1} id={i} title={title} />) : <p>Добавьте задачи</p>
                 }
                 
                 

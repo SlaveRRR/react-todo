@@ -4,7 +4,8 @@ import './Btns-section.scss'
 import { useActions } from "../../../hooks/useActions";
  const Btns = () => {
  const [text,setText] = useState('');
-  console.log(text)
+ const {todos} = useSelector(state => state.todos)
+  
   const modalRef = useRef()
   const openModal = (e) =>{
     modalRef.current.classList.toggle('modal--opened')
@@ -40,7 +41,7 @@ import { useActions } from "../../../hooks/useActions";
         <input onChange={e => setText(e.target.value)} value={text} type="text" id='todo-task' className='container-input__todo-task' />
         <label  className="container-input__todo-add-btn" htmlFor="todo-add-task"></label>
         <input onClick={() =>{
-          addTodo(text);
+          addTodo({title:text,id:todos+10});
           setText('')
         }}  type="button" id='todo-add-task' className='container-input__todo-btn' />
      </div>

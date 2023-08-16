@@ -1,5 +1,6 @@
 @use "../../../assets/styles/mixins" as *;
 .btns-section{
+    padding-top: .8em;
     margin-bottom: 1em;
 }
 .container-input{
@@ -15,11 +16,18 @@
     z-index: -1;
     opacity: 0;
 }
-
+.container-input__todo-task{
+   
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 1em;
+    padding: .5em;
+}
 .container-input__todo-add-btn{
     display: inline-block;
     border: 1px black solid;
-    border-radius: 15px;
+    align-self: center;
+    border-radius: 10px;
     background-image: url('../../../assets/crest.svg');
     background-size: contain;
     background-repeat: no-repeat;

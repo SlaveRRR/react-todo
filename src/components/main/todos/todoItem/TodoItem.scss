@@ -1,5 +1,4 @@
-
-.item{
+.item {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -8,16 +7,29 @@
     padding: .1em .5em;
     width: 100%;
     touch-action: none;
-    
-    &.removed  &__task-name{
+
+    &__task-name {
+        padding: 0.5em;
+        text-align: center;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 30ch;
+        white-space: nowrap;
+        line-height: 110%;
+    }
+
+    &.removed &__task-name {
         text-decoration: line-through;
     }
-    
+
+
 }
-.btn-container{
+
+.btn-container {
     display: flex;
 }
-.btn-container__label{
+
+.btn-container__label {
     width: 1.6em;
     height: 1.5em;
     transition: all .3s;
@@ -25,11 +37,12 @@
     border-radius: 10px;
 }
 
-.btn-container__input{
+.btn-container__input {
     position: absolute;
     z-index: -1;
     opacity: 0;
 }
+
 .btn-container__label--checked {
     background-color: rgb(141, 137, 137);
     background-repeat: no-repeat;
@@ -43,24 +56,25 @@
     z-index: -1;
     opacity: 0;
 }
-.btns-container__label-drag{
+
+.btns-container__label-drag {
     width: 2.5em;
     height: 2.5em;
     transition: all .3s;
     display: inline-block;
 }
 
-.label-drag{
+.label-drag {
     touch-action: none;
     position: relative;
-    background:url('../../../../assets/burger-menu.svg') no-repeat center ;
-   
-    
-    
+    background: url('../../../../assets/burger-menu.svg') no-repeat center;
+
+
+
 }
 
 
-.label-drag__hov{
+.label-drag__hov {
     display: inline-block;
     position: absolute;
     left: 0;
@@ -73,36 +87,42 @@
     transition: 0.2s ease-out;
     touch-action: none;
 }
-.hov--grabbing{
+
+.hov--grabbing {
     cursor: grabbing;
 }
+
 .label-drag:hover .label-drag__hov {
     clip-path: circle(50% at center);
 }
-  
-  
-  
 
 
-.btns-container__remove-task{
+
+
+
+.btns-container__remove-task {
     position: absolute;
     z-index: -1;
     opacity: 0;
 }
-.btns-container__label-remove{
+
+.btns-container__label-remove {
     width: 2.5em;
     height: 2.5em;
     transition: all .3s;
-    
+
 }
-.label-remove{
+
+.label-remove {
     background-image: url('../../../../assets/bin.svg');
     background-size: cover;
 }
-.over{
+
+.over {
     border: 3px solid red;
 }
-.moved{
+
+.moved {
     position: absolute;
     background-color: black;
     color: white;
