@@ -1,0 +1,40 @@
+.loader{
+    margin: 0 auto;
+    width: 5em;
+    height: 5em;
+    border:16px solid rgb(221, 219, 219);
+    border-top:16px solid black;
+    border-radius: 50px;
+    &-enter {
+        // transition: opacity .1s;
+        opacity: 0;
+    }
+    &-enter-active {
+        transition: opacity .4s;
+        opacity: 1;
+        animation: spin 1.2s ease-in-out infinite;
+    }
+    &-enter-done{
+        opacity: 1;
+        animation: spin 1.2s ease-in-out infinite;
+    }
+    &-exit {
+        opacity: 0;
+    }
+    &-exit-active {
+        opacity: 0;
+    }
+    &-exit-done {
+        opacity: 0;
+    }
+   
+    
+   
+   
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+}
+

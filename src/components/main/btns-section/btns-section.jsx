@@ -1,53 +1,44 @@
-import React, { useRef, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import React, {  useState } from "react"
+import { useSelector } from "react-redux"
 import './Btns-section.scss'
 import { useActions } from "../../../hooks/useActions";
- const Btns = () => {
- const [text,setText] = useState('');
- const {todos} = useSelector(state => state.todos)
-  
-  const modalRef = useRef()
-  const openModal = (e) =>{
-    modalRef.current.classList.toggle('modal--opened')
-  }
-  const {addTodo} = useActions()
-  const checkInput = (e) =>{
-    console.log(e.target.value)
-  }
-  const getInput = (e) =>{
-    console.log('wokr')
-  }
-  const handleClick = (e) =>{
-    if(e.target == modalRef.current){
-      modalRef.current.classList.toggle('modal--opened')
-    }
-  }
-  
-    return (
-        <section className='btns-section'>
-          <div className="container">
-          {/* <div ref={modalRef} className="modal" onClick={handleClick}>
-            <div className="modal-container">
-            <label  htmlFor="todo-add" >Добавить задачу</label>
-         <input onChange={e => setText(e.target.value)} type="text" id='todo-add' value={text} />
-         <input onClick={() => addTodo({
-          payload:text
-         })} type="button" id='todo-add' />
-            </div>
+import ctx from "../../../context";
+import { useContext } from "react";
+const Btns = () => {
+  const [text, setText] = useState('');
+  const { todos } = useSelector(state => state.todos)
+  const {setOpenedSnackBar,setErrSnackBar,setMessageSnackBar} = useContext(ctx);
 
-          </div> */}
-      <div className="container-input">
-        <label  htmlFor="todo-task" className='visuallyhidden'>Поиск задачи</label>
-        <input onChange={e => setText(e.target.value)} value={text} type="text" id='todo-task' className='container-input__todo-task' />
-        <label  className="container-input__todo-add-btn" htmlFor="todo-add-task"></label>
-        <input onClick={() =>{
-          addTodo({title:text,id:todos+10});
-          setText('')
-        }}  type="button" id='todo-add-task' className='container-input__todo-btn' />
-     </div>
-          </div>
-      </section>
-    )
+  const snackBarError = () =>{
+    setOpenedSnackBar(true)
+    setErrSnackBar(true);
+    setMessageSnackBar('Please,wrtite text');
+    setTimeout(() =>{
+      setOpenedSnackBar(false)
+    },1500)
+  }
+  const { addTodo } = useActions()
+  
+  const handleClick = () => {
+    if (text) {
+      const lastId = [...todos].sort((a, b) => b.id - a.id)[0].id
+      addTodo({ title: text, id: lastId+1 })
+      return setText('')
+    }
+    snackBarError()
+
+  }
+
+  return (
+    <section className='btns-section'>
+      <div className="container">
+        <div className="container-input">
+          <input onKeyDown={e => e.key == 'Enter' ? handleClick() : ''} onChange={e => setText(e.target.value)} placeholder="Some task.." value={text} type="text" id='todo-task' className='container-input__todo-task' />
+          <button onClick={() => handleClick()} className='container-input__add-todo' type="button">Add</button>
+        </div>
+      </div>
+    </section>
+  )
 }
 
 export default Btns

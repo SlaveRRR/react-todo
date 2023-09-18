@@ -1,19 +1,19 @@
+@use "../../../assets/styles/mixins" as *;
+
 .todo-section {
     margin-bottom: 2em;
 }
-
-.todo-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: center;
-    flex-wrap: wrap;
-    gap: .5em;
-
+.todo-container{
+    @include flex($dir:column,$gap:.5em);
+    
+}
+.todo-items {
+    @include flex($dir:column,$gap:.5em);
+    width: 100%;
 }
 
 
 
 .todo-container__header {
-    margin-bottom: .1em;
+    margin-bottom:.1em;
 }

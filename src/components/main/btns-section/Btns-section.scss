@@ -10,60 +10,26 @@
     justify-content: center;
     gap:.4em;
 }
-
-.container-input__todo-btn{
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
+.container-input__add-todo{
+    font-size: 1.1rem;
+    padding: .5em;
+    border: 1px solid black;
+    border-radius: 10px;
+    color: black;
+    background-color: white;
+    box-shadow: 1px 2px 3px 0px rgba($color: #000000, $alpha: .7);
+    transition: all .2s ease-out;
+    @include focus{
+        outline: 3px solid rgb(0, 0, 0);
+    }
+    &:active{
+        background-color:black;
+        color:white;
+    }
 }
-.container-input__todo-task{
-   
+.container-input__todo-task{ 
     border: 1px solid black;
     border-radius: 10px;
     font-size: 1em;
     padding: .5em;
-}
-.container-input__todo-add-btn{
-    display: inline-block;
-    border: 1px black solid;
-    align-self: center;
-    border-radius: 10px;
-    background-image: url('../../../assets/crest.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 30px;
-    height: 30px;
-
-}
-
-.modal{
-    right: 0;
-    position: fixed;
-    margin: 0 auto;
-    left: 0;
-    top: 0;
-    z-index: 10;
-    visibility: hidden;
-    transform: translateY(-300px);
-    transition: background-color 0.2ms,transform 2s;
-    display: flex;
-    height: 100vh;
-    align-items: center;
-   
-}
-
-.modal--opened{
-    transform: translateY(0);
-    visibility: visible;
-    background-color: rgba(0, 0, 0, 0.7);
-}
-
-.modal-container{
-    display: flex;
-    align-items: center;
-    background-color: rgba(192 ,184, 195, .9);
-    width: 100%;
-    max-width: 50vw;
-    margin: 0 auto;
-    height: 30vh;
 }

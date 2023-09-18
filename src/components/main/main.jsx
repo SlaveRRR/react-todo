@@ -8,6 +8,7 @@ const Main = () =>{
    
       <Btns/>
       <Todos/>
+      
     </main>
     )
 }

@@ -13,31 +13,24 @@ const todoSlice = createSlice({
     },
     reducers:{
         addTodo(state,{payload:todo}){
-           
+            console.log(todo)
             state.todos.push(todo)
             
         },
-        removeTodo(state,action){
-            state.todos.splice(state.todos.findIndex(e => e['id'] == action.payload.id),1)
+        removeTodo(state,{payload:title}){
+            state.todos = state.todos.filter(v => v.title !== title);
+          
+            
         },
         changeOrderTodo(state,{payload:{ownId,dropId,delta}}){
-            console.log(state.todos[ownId].id,state.todos[dropId].id)
-            let filtered = state.todos.filter(elem => elem.id != state.todos[ownId].id);
            
-            delta > 0 ? filtered.splice(filtered.findIndex(e => e.id === state.todos[dropId].id),1,...[state.todos[dropId],state.todos[ownId]]) : filtered.splice(filtered.findIndex(e => e.id === state.todos[dropId].id),1,...[state.todos[ownId],state.todos[dropId]])
+            let dropElem = state.todos.find(e => e.id === dropId);
+            let ownElem = state.todos.find(e => e.id === ownId);
+            let filtered = state.todos.filter(elem => elem.id != ownElem.id);
+           console.log(filtered)
+            delta > 0 ? filtered.splice(filtered.indexOf(dropElem),1,...[dropElem,ownElem]) : filtered.splice(filtered.indexOf(dropElem),1,...[ownElem,dropElem])
            
             state.todos = filtered
-        //     console.log(filtered)
-        //     // console.log(ownId,dropId)
-        //    console.log(filtered.splice(dropId,1,{id:'xui'},{id:'lole'}))
-        //     // // state.todos =  [...filtered.slice(0,dropId),state.todos[ownId],...filtered.slice(dropId)]
-        //     // console.log(filtered)
-        //     // delta > 0 ? filtered.splice(dropId,1,...[state.todos[dropId],state.todos[ownId]]) : filtered.splice(dropId,1,...[state.todos[ownId],state.todos[dropId]])
-        //     console.log(filtered)
-        //     for(let i of filtered){
-        //         console.log(i['id'])
-        //     }
-            // state.todos = filtered;
         }
     },
     extraReducers: builder =>{
@@ -49,6 +42,7 @@ const todoSlice = createSlice({
             state.isLoading = false;
             state.todos = payload;
             console.log(state.todos)
+           
         })
         .addCase(getTodos.rejected,(state,{payload}) =>{
             state.isLoading = true;

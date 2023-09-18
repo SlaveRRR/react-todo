@@ -7,6 +7,68 @@
     padding: .1em .5em;
     width: 100%;
     touch-action: none;
+    box-shadow: 2px 3px 6px 1px rgba(0, 0, 0, .7);
+
+    &--moved {
+        position: absolute;
+        z-index: 1000;
+        color: rgb(7, 3, 3);
+        touch-action: none;
+        pointer-events: none;
+        box-shadow: 2px 3px 6px 8px rgba(0, 0, 0, .4);
+        border: 1px solid rgba($color: black, $alpha: .9);
+        background-color: rgb(170, 165, 165);
+    }
+
+    &--shaked {
+        animation: shake 1s infinite;
+    }
+
+    @keyframes shake {
+        0% {
+            transform: translate(1px, 1px) rotate(0deg);
+        }
+
+        10% {
+            transform: translate(-1px, -2px) rotate(-1deg);
+        }
+
+        20% {
+            transform: translate(-1px, 0px) rotate(1deg);
+        }
+
+        30% {
+            transform: translate(2px, 2px) rotate(0deg);
+        }
+
+        40% {
+            transform: translate(1px, -1px) rotate(1deg);
+        }
+
+        50% {
+            transform: translate(-1px, 2px) rotate(-1deg);
+        }
+
+        60% {
+            transform: translate(-2px, 1px) rotate(0deg);
+        }
+
+        70% {
+            transform: translate(2px, 1px) rotate(-1deg);
+        }
+
+        80% {
+            transform: translate(-1px, -1px) rotate(1deg);
+        }
+
+        90% {
+            transform: translate(1px, 2px) rotate(0deg);
+        }
+
+        100% {
+            transform: translate(1px, -2px) rotate(-1deg);
+        }
+    }
 
     &__task-name {
         padding: 0.5em;
@@ -18,8 +80,26 @@
         line-height: 110%;
     }
 
-    &.removed &__task-name {
-        text-decoration: line-through;
+    &-enter {
+        opacity: 0;
+        transform: translateX(110%);
+    }
+
+    &-enter-active {
+        opacity: 1;
+        transform: translateX(0);
+        transition: opacity 500ms ease-in, transform 500ms ease;
+
+    }
+
+    &-exit {
+        opacity: 1;
+    }
+
+    &-exit-active {
+        opacity: 0;
+        transform: translateX(110%);
+        transition: opacity 500ms ease-in, transform 500ms ease;
     }
 
 
@@ -30,26 +110,20 @@
 }
 
 .btn-container__label {
-    width: 1.6em;
+    width: 1.5em;
     height: 1.5em;
     transition: all .3s;
-    background-color: aqua;
-    border-radius: 10px;
+    background: url("/src/assets/bin.svg") center center no-repeat;
+    background-size: contain;
+  
 }
 
 .btn-container__input {
     position: absolute;
     z-index: -1;
     opacity: 0;
+   
 }
-
-.btn-container__label--checked {
-    background-color: rgb(141, 137, 137);
-    background-repeat: no-repeat;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
-}
-
-
 
 .btns-container__drag-task {
     position: absolute;
@@ -62,15 +136,9 @@
     height: 2.5em;
     transition: all .3s;
     display: inline-block;
-}
-
-.label-drag {
     touch-action: none;
     position: relative;
     background: url('../../../../assets/burger-menu.svg') no-repeat center;
-
-
-
 }
 
 
@@ -81,52 +149,15 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgb(100, 100, 100);
-    opacity: 0.1;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.4;
     clip-path: circle(0 at center);
-    transition: 0.2s ease-out;
+    transition: 0.2s ease;
     touch-action: none;
 }
 
-.hov--grabbing {
-    cursor: grabbing;
-}
-
-.label-drag:hover .label-drag__hov {
-    clip-path: circle(50% at center);
+.item--moved .label-drag__hov{
+        clip-path: circle(50% at center);
 }
 
 
-
-
-
-.btns-container__remove-task {
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-}
-
-.btns-container__label-remove {
-    width: 2.5em;
-    height: 2.5em;
-    transition: all .3s;
-
-}
-
-.label-remove {
-    background-image: url('../../../../assets/bin.svg');
-    background-size: cover;
-}
-
-.over {
-    border: 3px solid red;
-}
-
-.moved {
-    position: absolute;
-    background-color: black;
-    color: white;
-    border: 1px solid aqua;
-    touch-action: none;
-    pointer-events: none;
-}

@@ -3,7 +3,7 @@ import  './UiSnackBar.scss';
 
 import classNames from 'classnames';
 
-const UiSnackBar = ({ message = '', visible = false, err = false, mixClass=[] }) => {
+const UiSnackBar = ({ message = '', err = false, mixClass=[] }) => {
        
 
         
