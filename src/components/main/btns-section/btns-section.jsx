@@ -21,8 +21,10 @@ const Btns = () => {
   
   const handleClick = () => {
     if (text) {
-      const lastId = [...todos].sort((a, b) => b.id - a.id)[0].id
-      addTodo({ title: text, id: lastId+1 })
+      const lastElem = [...todos].sort((a, b) => b.id - a.id)[0];
+      console.log(lastElem)
+      const id = lastElem?.id ?? 0
+      addTodo({ title: text, id: id+1 })
       return setText('')
     }
     snackBarError()
