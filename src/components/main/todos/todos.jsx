@@ -4,13 +4,17 @@ import "./Todos.scss"
 import { useSelector } from "react-redux";
 import { useActions } from "../../../hooks/useActions";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { useGetTodosQuery } from "../../../store/api/api";
 const Todos = () => {
-  
+   // default async thunk
     const {todos,error,isLoading} = useSelector(state => state.todos);
 
     const {getTodos} = useActions();
+    // rtk-query
+    const {data} = useGetTodosQuery();
     
-  
+    console.log(data)
+   
  
     
     const elemHeading = useRef();
@@ -19,7 +23,8 @@ const Todos = () => {
    
     useEffect(() =>{
         getTodos(5)
-        maxValue.current = elemHeading.current.nextElementSibling.getBoundingClientRect().top
+         maxValue.current = elemHeading.current.nextElementSibling.getBoundingClientRect().top
+       
         
     },[])
    
@@ -31,7 +36,8 @@ const Todos = () => {
                 <h2 ref={elemHeading} className="todo-container__header">Задачи</h2>
                 
                 {
-                 todos.length > 0 ?  <TransitionGroup component={'div'} className={'todo-items'} >{todos.map(({title,id}) => <CSSTransition  key={id+1} classNames={'item'} timeout={500} ><TodoItem maxValue={maxValue}  id={id} title={title} /></CSSTransition>)}</TransitionGroup>  : isLoading ? '' :<p>Добавьте задачи</p>
+                isLoading ? '' : todos.length > 0 ?  <TransitionGroup component={'div'} className={'todo-items'} >{todos.map(({title,id}) => <CSSTransition  key={id+1} classNames={'item'} timeout={500} ><TodoItem maxValue={maxValue}  id={id} title={title} /></CSSTransition>)}</TransitionGroup>  :<p>Добавьте задачи</p>
+                 
                 }
                 
                 
