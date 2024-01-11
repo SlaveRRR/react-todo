@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 const App = () =>{
+  
   const [isOpenedSnackBar,setOpenedSnackBar] = useState(false);
 
   const [isErrSnackBar,setErrSnackBar] = useState(false);

@@ -8,6 +8,7 @@
     
 }
 .todo-items {
+    padding-top: 20px;
     @include flex($dir:column,$gap:.5em);
     width: 100%;
 }

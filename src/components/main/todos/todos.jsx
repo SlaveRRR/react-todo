@@ -7,13 +7,13 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { useGetTodosQuery } from "../../../store/api/api";
 const Todos = () => {
    // default async thunk
-    const {todos,error,isLoading} = useSelector(state => state.todos);
+    const {todos,isLoading} = useSelector(state => state.todos);
 
     const {getTodos} = useActions();
     // rtk-query
     const {data} = useGetTodosQuery();
     
-    console.log(data)
+   
    
  
     
@@ -33,7 +33,7 @@ const Todos = () => {
         <section className="todo-section">
           
             <div className="todo-container container">
-                <h2 ref={elemHeading} className="todo-container__header">Задачи</h2>
+                <h2 ref={elemHeading} className="todo-container__header">Tasks</h2>
                 
                 {
                 isLoading ? '' : todos.length > 0 ?  <TransitionGroup component={'div'} className={'todo-items'} >{todos.map(({title,id}) => <CSSTransition  key={id+1} classNames={'item'} timeout={500} ><TodoItem maxValue={maxValue}  id={id} title={title} /></CSSTransition>)}</TransitionGroup>  :<p>Добавьте задачи</p>

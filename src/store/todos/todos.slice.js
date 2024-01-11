@@ -13,7 +13,6 @@ const todoSlice = createSlice({
     },
     reducers:{
         addTodo(state,{payload:todo}){
-            console.log(todo)
             state.todos.push(todo)
             
         },

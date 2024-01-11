@@ -8,66 +8,26 @@
     width: 100%;
     touch-action: none;
     box-shadow: 2px 3px 6px 1px rgba(0, 0, 0, .7);
-
+    transition: transform .7s;
+    background: white;
     &--moved {
         position: absolute;
         z-index: 1000;
         color: rgb(7, 3, 3);
         touch-action: none;
         pointer-events: none;
+        width: 95%;
         box-shadow: 2px 3px 6px 8px rgba(0, 0, 0, .4);
         border: 1px solid rgba($color: black, $alpha: .9);
         background-color: rgb(170, 165, 165);
     }
 
-    &--shaked {
-        animation: shake 1s infinite;
+    &--up {
+        transform: translateY(-25px);
     }
 
-    @keyframes shake {
-        0% {
-            transform: translate(1px, 1px) rotate(0deg);
-        }
-
-        10% {
-            transform: translate(-1px, -2px) rotate(-1deg);
-        }
-
-        20% {
-            transform: translate(-1px, 0px) rotate(1deg);
-        }
-
-        30% {
-            transform: translate(2px, 2px) rotate(0deg);
-        }
-
-        40% {
-            transform: translate(1px, -1px) rotate(1deg);
-        }
-
-        50% {
-            transform: translate(-1px, 2px) rotate(-1deg);
-        }
-
-        60% {
-            transform: translate(-2px, 1px) rotate(0deg);
-        }
-
-        70% {
-            transform: translate(2px, 1px) rotate(-1deg);
-        }
-
-        80% {
-            transform: translate(-1px, -1px) rotate(1deg);
-        }
-
-        90% {
-            transform: translate(1px, 2px) rotate(0deg);
-        }
-
-        100% {
-            transform: translate(1px, -2px) rotate(-1deg);
-        }
+    &--down {
+        transform: translateY(25px);
     }
 
     &__task-name {
@@ -115,14 +75,14 @@
     transition: all .3s;
     background: url("/src/assets/bin.svg") center center no-repeat;
     background-size: contain;
-  
+
 }
 
 .btn-container__input {
     position: absolute;
     z-index: -1;
     opacity: 0;
-   
+
 }
 
 .btns-container__drag-task {
@@ -156,8 +116,6 @@
     touch-action: none;
 }
 
-.item--moved .label-drag__hov{
-        clip-path: circle(50% at center);
+.item--moved .label-drag__hov {
+    clip-path: circle(50% at center);
 }
-
-
